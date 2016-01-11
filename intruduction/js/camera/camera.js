@@ -1,10 +1,16 @@
-window.Camera = function(angle, position) {
+window.Camera = function(angle, position, aspect) {
   this._angle = angle;
-  this._position = position;
+  this._position = {};
 
-  var camera = new THREE.PerspectiveCamera(angle, WIDTH/HEIGHT, 0.1, 2000);
+  var camera = new THREE.PerspectiveCamera(angle, aspect.width/aspect.height, 0.1, 2000);
 
-  camera.position.set(_position.x, _position.y, _position.z);
+  if(typeof position.x === "undefined" || typeof position.y === "undefined" || typeof position.z === "undefined") {
+    console.error("Invalid camera position");
+  } else {
+    this._position = position;
+  }
+
+  camera.position.set(this._position.x, this._position.y, this._position.z);
 
   return camera;
 };
