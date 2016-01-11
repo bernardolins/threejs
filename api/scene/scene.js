@@ -1,4 +1,5 @@
-window.Scene = function(camera) {
+window.Scene = function() {
   var scene = new THREE.Scene(); 
-  scene.add(camera);
+
+  return scene;
 };
