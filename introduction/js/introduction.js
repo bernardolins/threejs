@@ -22,6 +22,15 @@ window.Introduction = {
     }) 
   },
 
+  light: {
+    position: {
+      x: 10,
+      y: 50,
+      z: 130 
+    },
+    color: 0xFFFFFF 
+  },
+
   initialize: function(selector) {
     var renderer = new Renderer(this.aspect);
     var camera = new Camera(this.camera.angle, this.camera.position, this.aspect);
@@ -29,11 +38,8 @@ window.Introduction = {
 
     var sphere = new Sphere(this.sphereOptions.radius, this.sphereOptions);
 
-    var pointLight = new THREE.PointLight( 0xFFFFFF );
+    var pointLight = new PointLight(this.light.position, this.light.color);
 
-    pointLight.position.x = 10;
-    pointLight.position.y = 50;
-    pointLight.position.z = 130;
 
     scene.add(sphere); 
     scene.add(camera); 

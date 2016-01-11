@@ -1,5 +1,4 @@
 window.Sphere = function(radius, options) {
-  console.log(radius, options);
   var sphere = new THREE.Mesh(
     new THREE.SphereGeometry(
       radius,
