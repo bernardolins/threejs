@@ -1,3 +1,4 @@
 window.SolarSystem = {
-  planets: []
+  planets: [],
+  stars: []
 };

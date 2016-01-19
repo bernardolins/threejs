@@ -1,11 +1,19 @@
-window.Planet = function(scale, orbitRadius, rotationSpeed, daysInYear) {
+window.Planet = function(name, scale, orbitRadius, rotationSpeed, daysInYear) {
   var rotationSpeed = rotationSpeed; 
   var orbitRadius = orbitRadius;
   var daysInYear = daysInYear;
   var pivot = new THREE.Object3D();
 
-	var material = new THREE.MeshBasicMaterial({ color: 0x00aa00, wireframe: true });
-	var geometry = new THREE.SphereGeometry(100, 16, 8);
+  var onLoadEvent = name + 'TextureLoaded';
+
+	var texture	= THREE.ImageUtils.loadTexture('images/' + name + 'map.jpg');
+	var bump = THREE.ImageUtils.loadTexture('images/' + name + 'bump.jpg');
+
+	var material = new THREE.MeshPhongMaterial({
+    map: texture,
+  });
+
+	var geometry = new THREE.SphereGeometry(100, 64, 64);
 
 	mesh = new THREE.Mesh(geometry, material);
   mesh.scale.multiplyScalar(scale);
@@ -15,10 +23,9 @@ window.Planet = function(scale, orbitRadius, rotationSpeed, daysInYear) {
     mesh: mesh,
     pivot: pivot,
     rotationSpeed: rotationSpeed,
-    orbitRadius: orbitRadius
+    orbitRadius: orbitRadius,
+    onLoadEvent: onLoadEvent
   };
-
-  console.log("add", planet);
 
   pivot.add(mesh);
 
